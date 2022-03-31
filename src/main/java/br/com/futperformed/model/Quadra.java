@@ -1,66 +1,38 @@
 package br.com.futperformed.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Quadra implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idQuadra", nullable = false)
     private int idQuadra;
 
+    @Column(name = "nomeQuadra", nullable = false)
     private String nomeQuadra;
+
+    @Column(name = "tipoQuadra", nullable = false)
     private String tipoQuadra;
+
+    @Column(name = "endereco", nullable = false)
     private String endereco;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Jogo", referencedColumnName = "idJogo", nullable = false)
+
+    @OneToMany(mappedBy = "quadra")
     private List<Jogo> jogo;
 
 
-    public int getIdQuadra() {
-        return idQuadra;
-    }
-
-    public void setIdQuadra(int idQuadra) {
-        this.idQuadra = idQuadra;
-    }
-
-    public String getNomeQuadra() {
-        return nomeQuadra;
-    }
-
-    public void setNomeQuadra(String nomeQuadra) {
-        this.nomeQuadra = nomeQuadra;
-    }
-
-    public String getTipoQuadra() {
-        return tipoQuadra;
-    }
-
-    public void setTipoQuadra(String tipoQuadra) {
-        this.tipoQuadra = tipoQuadra;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    @Override
-    public String toString() {
-        return "Quadra{" +
-                "idQuadra=" + idQuadra +
-                ", nomeQuadra='" + nomeQuadra + '\'' +
-                ", tipoQuadra='" + tipoQuadra + '\'' +
-                ", endereco='" + endereco + '\'' +
-                '}';
-    }
 }

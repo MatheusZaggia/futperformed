@@ -1,157 +1,73 @@
 package br.com.futperformed.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Time implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idTime", nullable = false)
     private int idTime;
 
+    @Column(name = "nomeTime", nullable = false)
     private String nomeTime;
+
+    @Column(name = "cidade", nullable = false)
     private String cidade;
+
+    @Column(name = "bairro", nullable = false)
     private String bairro;
+
+    @Column(name = "zona", nullable = false)
     private String zona;
+
+    @Column(name = "nomeResponsavel", nullable = false)
     private String nomeResponsavel;
+
+    @Column(name = "dataNascimento", nullable = false)
     private Date dataNascimento;
+
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "ddd", nullable = false)
     private int ddd;
+
+    @Column(name = "telefone", nullable = false)
     private int telefone;
+
+    @Column(name = "senha", nullable = false)
     private String senha;
+
+    @Column(name = "local", nullable = false)
     private String local;
 
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Quadra", referencedColumnName = "idQuadra", nullable = false)
-    private Quadra quadra;
+    @OneToMany(mappedBy = "timeVisitante")
+   private List<Jogo> jogoVisitante;
 
-    @OneToMany(mappedBy = "jogo", cascade = CascadeType.ALL)
-    @JoinColumn(name = "Jogo", referencedColumnName = "idJogo", nullable = false)
-    private List<Jogo> jogo;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "JogadorTime", referencedColumnName = "idJogadorTime", nullable = false)
+    @OneToMany(mappedBy = "timeMandante")
+    private List<Jogo> jogoMandante;
+
+
+    @OneToMany(mappedBy = "time")
     private List<JogadorTime> JogadorTime;
 
 
-    public int getIdTime() {
-        return idTime;
-    }
-
-    public void setIdTime(int idTime) {
-        this.idTime = idTime;
-    }
-
-    public String getNomeTime() {
-        return nomeTime;
-    }
-
-    public void setNomeTime(String nomeTime) {
-        this.nomeTime = nomeTime;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getZona() {
-        return zona;
-    }
-
-    public void setZona(String zona) {
-        this.zona = zona;
-    }
-
-    public String getNomeResponsavel() {
-        return nomeResponsavel;
-    }
-
-    public void setNomeResponsavel(String nomeResponsavel) {
-        this.nomeResponsavel = nomeResponsavel;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getDdd() {
-        return ddd;
-    }
-
-    public void setDdd(int ddd) {
-        this.ddd = ddd;
-    }
-
-    public int getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getLocal() {
-        return local;
-    }
-
-    public void setLocal(String local) {
-        this.local = local;
-    }
 
 
-    @Override
-    public String toString() {
-        return "Time{" +
-                "idTime=" + idTime +
-                ", nomeTime='" + nomeTime + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", zona='" + zona + '\'' +
-                ", nomeResponsavel='" + nomeResponsavel + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", email='" + email + '\'' +
-                ", ddd=" + ddd +
-                ", telefone=" + telefone +
-                ", senha='" + senha + '\'' +
-                ", local='" + local + '\'' +
-                '}';
-    }
 }

@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface JogadorTimeRepository extends JpaRepository<JogadorTime, Integer> {
 
     JogadorTime findById(int id);
+
+    JogadorTime findByNomeJogador(String nomeJogador);
 }

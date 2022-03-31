@@ -1,6 +1,5 @@
 package br.com.futperformed.controller;
 
-import br.com.futperformed.model.JogadorTime;
 import br.com.futperformed.model.Quadra;
 import br.com.futperformed.repository.QuadraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,11 @@ public class QuadraController {
     @GetMapping("/quadra/{id}")
     public Quadra listaQuadraUnica(@PathVariable(value = "id") int id){
         return quadraRepositoryy.findById(id);
+    }
+
+    @GetMapping("/quadra/{nome}")
+    public Quadra listaNomeQuadra(@PathVariable(value = "nome") String nome){
+        return quadraRepositoryy.findByNomeQuadra(nome);
     }
 
     @PostMapping("/quadra")

@@ -1,64 +1,43 @@
 package br.com.futperformed.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Jogo implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idJogo", nullable = false)
     private int idJogo;
 
-    private String nomeTimeAdversario;
-    private Date dataJogo;
+
+    @Column(name = "dataJogo", nullable = false)
+    private LocalDateTime dataJogo;
+
+    @Column(name = "resultado", nullable = false)
     private String resultado;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "timeVisitante", referencedColumnName = "idTime")
+    private Time timeVisitante;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "timeMandante", referencedColumnName = "idTime")
+    private Time timeMandante;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "quadra", referencedColumnName = "idQuadra")
+    private Quadra quadra;
 
 
-    public int getIdJogo() {
-        return idJogo;
-    }
-
-    public void setIdJogo(int idJogo) {
-        this.idJogo = idJogo;
-    }
-
-    public String getNomeTimeAdversario() {
-        return nomeTimeAdversario;
-    }
-
-    public void setNomeTimeAdversario(String nomeTimeAdversario) {
-        this.nomeTimeAdversario = nomeTimeAdversario;
-    }
-
-    public Date getDataJogo() {
-        return dataJogo;
-    }
-
-    public void setDataJogo(Date dataJogo) {
-        this.dataJogo = dataJogo;
-    }
-
-    public String getResultado() {
-        return resultado;
-    }
-
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
-    }
-
-    @Override
-    public String toString() {
-        return "Jogo{" +
-                "idJogo=" + idJogo +
-                ", nomeTimeAdversario='" + nomeTimeAdversario + '\'' +
-                ", dataJogo=" + dataJogo +
-                ", resultado='" + resultado + '\'' +
-                '}';
-    }
 }

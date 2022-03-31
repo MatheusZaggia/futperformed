@@ -7,4 +7,6 @@ public interface QuadraRepository extends JpaRepository<Quadra, Integer> {
 
     Quadra findById(int id);
 
+    Quadra findByNomeQuadra(String nomeQuadra);
+
 }

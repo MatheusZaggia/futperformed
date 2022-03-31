@@ -1,94 +1,46 @@
 package br.com.futperformed.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
-
+import javax.persistence.*;
 
 @Entity
-public class JogadorTime implements Serializable {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class JogadorTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idJogador", nullable = false)
     private int idJogador;
 
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "quadro", nullable = false)
     private String quadro;
+
+    @Column(name = "ddd", nullable = false)
     private int ddd;
+
+    @Column(name = "telefone", nullable = false)
     private int telefone;
+
+    @Column(name = "posicao", nullable = false)
     private String posicao;
+
+    @Column(name = "nomeJogador", nullable = false)
     private String nomeJogador;
 
 
-    public int getIdJogador() {
-        return idJogador;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idTime", referencedColumnName = "idTime" ,nullable = false)
+    private Time time;
 
-    public void setIdJogador(int idJogador) {
-        this.idJogador = idJogador;
-    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getQuadro() {
-        return quadro;
-    }
-
-    public void setQuadro(String quadro) {
-        this.quadro = quadro;
-    }
-
-    public int getDdd() {
-        return ddd;
-    }
-
-    public void setDdd(int ddd) {
-        this.ddd = ddd;
-    }
-
-    public int getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(String posicao) {
-        this.posicao = posicao;
-    }
-
-    public String getNomeJogador() {
-        return nomeJogador;
-    }
-
-    public void setNomeJogador(String nomeJogador) {
-        this.nomeJogador = nomeJogador;
-    }
-
-    @Override
-    public String toString() {
-        return "Time{" +
-                "idJogador=" + idJogador +
-                ", email='" + email + '\'' +
-                ", quadro='" + quadro + '\'' +
-                ", ddd=" + ddd +
-                ", telefone=" + telefone +
-                ", posicao='" + posicao + '\'' +
-                ", nomeJogador='" + nomeJogador + '\'' +
-                '}';
+    public JogadorTime(JogadorTime jogadorTime) {
     }
 }

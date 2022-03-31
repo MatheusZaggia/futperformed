@@ -1,6 +1,5 @@
 package br.com.futperformed.controller;
 
-import br.com.futperformed.model.JogadorTime;
 import br.com.futperformed.model.Jogo;
 import br.com.futperformed.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
