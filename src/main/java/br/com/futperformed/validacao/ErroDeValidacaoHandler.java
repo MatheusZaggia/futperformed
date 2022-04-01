@@ -20,25 +20,25 @@ public class ErroDeValidacaoHandler {
     private MessageSource messageSource;
 
     //Quando ocorrer algum erro da exceção(MethodArgumentNotValidException), Spring chama o handle - passando como
-    // paramatro a exceção e fazemos o tratamento dentro do handle.
+     //paramatro a exceção e fazemos o tratamento dentro do handle.
 
-//    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public List<ErroDeFormulario> handle(MethodArgumentNotValidException exception){
-//
-//        List<ErroDeFormulario> erroForm = new ArrayList<>();
-//
-//        List<FieldError> fieldErrors =  exception.getBindingResult().getFieldErrors();
-//
-//        fieldErrors.forEach(e -> {
-//            String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-//            ErroDeFormulario erro = new ErroDeFormulario(e.getField(), mensagem);
-//
-//            erroForm.add(erro);
-//        });
-//
-//        return  erroForm;
-//    }
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public List<ErroDeFormulario> handle(MethodArgumentNotValidException exception){
+
+        List<ErroDeFormulario> erroForm = new ArrayList<>();
+
+        List<FieldError> fieldErrors =  exception.getBindingResult().getFieldErrors();
+
+        fieldErrors.forEach(e -> {
+            String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
+            ErroDeFormulario erro = new ErroDeFormulario(e.getField(), mensagem);
+
+            erroForm.add(erro);
+        });
+
+        return  erroForm;
+    }
 
 
 }

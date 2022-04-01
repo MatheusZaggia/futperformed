@@ -3,15 +3,16 @@ package br.com.futperformed.controller;
 import br.com.futperformed.model.JogadorTime;
 import br.com.futperformed.repository.JogadorTimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/jogadorTime")
+@RequestMapping("/api")
+@CrossOrigin
 public class JogadorTimeController {
+
 
     @Autowired
     JogadorTimeRepository jogadorTimeRepository;
@@ -22,15 +23,11 @@ public class JogadorTimeController {
     }
 
     @GetMapping("/jogadorTime/{id}")
-    public ResponseEntity<JogadorTime> listaJogadorTimeUnico(@PathVariable(value = "id") int id){
-
-        Optional<JogadorTime> jt = Optional.ofNullable(jogadorTimeRepository.findById(id));
-
-        if(jt.isPresent()){
-            return ResponseEntity.ok(new JogadorTime(jt.get()));
-        }
-        return ResponseEntity.notFound().build();
+    public Optional<JogadorTime> listaJogadorTimeUnico(@PathVariable(value = "id") Long id){
+        Optional<JogadorTime> jogadorTime = jogadorTimeRepository.findById(id);
+        return jogadorTime;
     }
+
 
     @GetMapping("/jogadorTime/{nome}")
     public JogadorTime listaNomeJogadorTime(@PathVariable(value = "nome") String nome){

@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/time")
+@RequestMapping("/api")
+@CrossOrigin
 public class TimeController {
 
     @Autowired
@@ -22,8 +24,9 @@ public class TimeController {
     }
 
     @GetMapping("/time/{id}")
-    public Time listaTimeUnico(@PathVariable(value = "id") int id){
-        return timeRepository.findById(id);
+    public Optional<Time> listaTimeUnico(@PathVariable(value = "id") Long id){
+        Optional<Time> time = timeRepository.findById(id);
+        return time;
     }
 
     @PostMapping("/time")

@@ -5,17 +5,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JogadorTime {
+public class JogadorTime implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idJogador", nullable = false)
-    private int idJogador;
+    private Long idJogador;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -24,10 +27,10 @@ public class JogadorTime {
     private String quadro;
 
     @Column(name = "ddd", nullable = false)
-    private int ddd;
+    private String ddd;
 
     @Column(name = "telefone", nullable = false)
-    private int telefone;
+    private String telefone;
 
     @Column(name = "posicao", nullable = false)
     private String posicao;
@@ -37,10 +40,7 @@ public class JogadorTime {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTime", referencedColumnName = "idTime" ,nullable = false)
+    @JoinColumn(name = "idTime", referencedColumnName = "idTime" , nullable = false)
     private Time time;
 
-
-    public JogadorTime(JogadorTime jogadorTime) {
-    }
 }

@@ -1,14 +1,17 @@
 package br.com.futperformed.controller;
 
+import br.com.futperformed.model.JogadorTime;
 import br.com.futperformed.model.Jogo;
 import br.com.futperformed.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/jogo")
+@RequestMapping("/api")
+@CrossOrigin
 public class JogoController {
 
     @Autowired
@@ -20,8 +23,9 @@ public class JogoController {
     }
 
     @GetMapping("/jogo/{id}")
-    public Jogo listaJogoUnico(@PathVariable(value = "id") int id){
-        return jogoRepository.findById(id);
+    public Optional<Jogo> listaJogoUnico(@PathVariable(value = "id") Long id){
+        Optional<Jogo> jogo = jogoRepository.findById(id);
+        return jogo;
     }
 
     @PostMapping("/jogo")

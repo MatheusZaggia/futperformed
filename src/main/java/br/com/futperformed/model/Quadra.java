@@ -16,10 +16,12 @@ import java.util.List;
 @AllArgsConstructor
 public class Quadra implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idQuadra", nullable = false)
-    private int idQuadra;
+    private Long idQuadra;
 
     @Column(name = "nomeQuadra", nullable = false)
     private String nomeQuadra;

@@ -14,12 +14,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Time implements Serializable {
+public class Time implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idTime", nullable = false)
-    private int idTime;
+    private Long idTime;
 
     @Column(name = "nomeTime", nullable = false)
     private String nomeTime;
@@ -43,17 +45,13 @@ public class Time implements Serializable {
     private String email;
 
     @Column(name = "ddd", nullable = false)
-    private int ddd;
+    private String ddd;
 
     @Column(name = "telefone", nullable = false)
-    private int telefone;
+    private String telefone;
 
     @Column(name = "senha", nullable = false)
     private String senha;
-
-    @Column(name = "local", nullable = false)
-    private String local;
-
 
 
     @OneToMany(mappedBy = "timeVisitante")
@@ -66,8 +64,5 @@ public class Time implements Serializable {
 
     @OneToMany(mappedBy = "time")
     private List<JogadorTime> JogadorTime;
-
-
-
 
 }

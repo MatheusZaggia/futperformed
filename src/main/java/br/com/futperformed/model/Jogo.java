@@ -15,10 +15,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Jogo implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idJogo", nullable = false)
-    private int idJogo;
+    private Long idJogo;
 
 
     @Column(name = "dataJogo", nullable = false)
