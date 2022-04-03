@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 public class JogadorTimeController {
 
 

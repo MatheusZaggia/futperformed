@@ -1,7 +1,5 @@
 package br.com.futperformed.controller;
 
-
-
 import br.com.futperformed.model.Time;
 import br.com.futperformed.repository.TimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
 public class TimeController {
 
     @Autowired
@@ -23,8 +20,14 @@ public class TimeController {
         return timeRepository.findAll();
     }
 
+    @GetMapping("/time")
+    public Time listaTimePorEmail(@RequestParam(value = "email") String email){
+        System.out.println(email);
+        return timeRepository.findByEmail(email);
+    }
+
     @GetMapping("/time/{id}")
-    public Optional<Time> listaTimeUnico(@PathVariable(value = "id") Long id){
+    public Optional<Time> listaTimeUnico(@RequestParam(value = "id") Long id){
         Optional<Time> time = timeRepository.findById(id);
         return time;
     }
